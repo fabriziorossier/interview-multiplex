@@ -17,6 +17,14 @@
     color: #ffffff;
 }
 
+.spinner-nutri-color {
+    color: mediumpurple !important;
+}
+
+.btn-nutri-color {
+    background-color: mediumpurple !important;
+}
+
 .category-weight {
     font-weight: normal;
 }

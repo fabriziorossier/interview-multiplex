@@ -56,8 +56,6 @@ def send_to_openai(request):
         )
 
         response_content = response.choices[0].message.content
-        print(message)
-        print(response_content)
 
         return render(request, 'response_template.html', {'response': response_content})
 
