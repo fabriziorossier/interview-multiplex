@@ -1,27 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="mb-4">Nutriplex</h1>
+<h1 class="mb-4 text-center">Nutriplex</h1>
 
-<form method="post" class="mb-4" action="{% url 'send_to_openai' %}">
+<form id="receta" method="post" class="mb-4" action="{% url 'send_to_openai' %}">
     {% csrf_token %}
     
     {% for category in categories %}
-        <div class="card mb-3">
-            <div class="card-header">{{ category.name }}</div>
+    <div class="card mb-3">
+        <div class="card-header text-center" data-bs-toggle="collapse" href="#collapseItems{{ category.id }}" role="button" aria-expanded="false" aria-controls="collapseItems{{ category.id }}">
+            <h2 class="category-weight">{{ category.name }}</h2>
+        </div>
+
+        <div class="collapse" id="collapseItems{{ category.id }}">
             <div class="card-body">
-                {% for item in category.item_set.all %}
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="{{ category.name }}" value="{{ item.name }}" id="{{ item.name }}" {% if item.name in selected_items %}checked{% endif %}>
-                        <label class="form-check-label" for="{{ item.name }}">
-                            {{ item.name }}
-                        </label>
+                <div class="row">
+                    {% for item in category.item_set.all %}
+                    <div class="col-12 col-sm-6 col-md-4 mb-2">
+                        <div class="d-grid btn-width">
+                            <label class="btn btn-outline-secondary btn-width {% if item.name in selected_items %}active{% endif %}">
+                                {{ item.name }}
+                                <input type="checkbox" class="d-none" name="{{ category.name }}" value="{{ item.name }}" id="{{ item.name }}" {% if item.name in selected_items %}checked{% endif %} autocomplete="off">
+                            </label>
+                        </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
+    </div>
     {% endfor %}
     
-    <button type="submit" class="btn btn-primary">Obtener Receta</button>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary text-center btn-action">Obtener Receta</button>
+    </div>
 </form>
+
+<div class="modal" tabindex="-1" id="loadingModal" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Generando Receta...</span>
+                </div>
+                <p>Generando Receta...</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

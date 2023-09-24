@@ -44,11 +44,9 @@ def send_to_openai(request):
             selected_in_category = request.POST.getlist(category.name)
             selected_items.extend(selected_in_category)
         
-        # Send to OpenAI API
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
-        # Construct your message
-        message = f"Necesito una receta con los siguientes ingredientes: {', '.join(selected_items)}, ademas necesito las cantidades de cada ingrediente para la receta, los pasos para realizar la receta y el aporte calorico total de la receta."
+        message = f"Necesito una receta con los siguientes ingredientes: {', '.join(selected_items)}, ademas necesito las cantidades de cada ingrediente para la receta, los pasos para realizar la receta y el aporte calorico total de la receta, formatea la receta con codigo HTML utilizando solo tags h2, h3, ul, ol, li, y p, centrando en la pantalla los elementos h2"
 
         response = openai.ChatCompletion.create(
             model="gpt-4",
@@ -58,8 +56,9 @@ def send_to_openai(request):
         )
 
         response_content = response.choices[0].message.content
+        print(message)
+        print(response_content)
 
-        # You can return this response to your template or handle it as needed
         return render(request, 'response_template.html', {'response': response_content})
 
     return redirect('select_items')

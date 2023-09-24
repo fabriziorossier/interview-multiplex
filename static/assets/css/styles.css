@@ -1,0 +1,27 @@
+.btn-width {
+    min-width: 10em;
+    max-width: 10em;
+    margin: 0 auto;
+}
+
+/* Styles for non-active toggle buttons */
+.btn-group-toggle .btn:not(.active) {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+/* Custom styles for an active button */
+.btn-group-toggle .btn.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
+}
+
+.category-weight {
+    font-weight: normal;
+}
+
+.btn-action {
+    font-weight: normal;
+    font-size: 1.2em;
+}

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Receta</h1>
-<p>{{ response }}</p>
+<h1 class="mb-4 text-center">Nutriplex</h1>
+<div>{{ response|safe }}</div>
+
+<div class="text-center">
+    <a href="/select"><button class="btn btn-primary text-center btn-action">Generar otra receta</button></a>
+</div>
 {% endblock %}
