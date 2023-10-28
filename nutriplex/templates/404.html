@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="mb-4 text-center">Nutriplex</h1>    
+    <h2 class="mb-4 text-center">Página no encontrada</h2>
+    <p class="mb-4 text-center">La página que buscas no existe.</p>
+
+    <div class="text-center">
+        <a href="{% url 'select-items' %}"><button class="btn btn-dark text-center btn-action btn-nutri-color">Volver a Nutriplex</button></a>
+    </div>
+{% endblock %}

@@ -6,10 +6,6 @@ from rest_framework import generics
 from .models import Category
 from .serializers import CategorySerializer
 from django.http import HttpResponse
-from .forms import ItemSelectionForm
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Create your views here.
 
@@ -60,3 +56,6 @@ def send_to_openai(request):
         return render(request, 'response_template.html', {'response': response_content})
 
     return redirect('select_items')
+
+def page_not_found(request):
+    return render(request, '404.html', status=404)

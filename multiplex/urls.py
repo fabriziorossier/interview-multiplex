@@ -16,15 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from nutriplex.views import home
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    #path('', home, name='home'),    
+urlpatterns = [  
     path('', include('nutriplex.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('nutriplex.urls')),
 ]
 
 if settings.DEBUG:
