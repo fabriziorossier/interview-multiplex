@@ -131,3 +131,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 HANDLER404 = 'multiplex.views.page_not_found'
+
+# CSRF
+CSRF_TRUSTED_ORIGINS = ['https://fabriziorossier.com', 'https://nutriplex.fabriziorossier.com']
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'
